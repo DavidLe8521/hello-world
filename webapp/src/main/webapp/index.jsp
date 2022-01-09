@@ -5,6 +5,7 @@
 
   <div class="container">
     <h1>New user Register</h1>
+    <p>Please fill in this form to create an account.</p>
     <br>
     <label for="uname"><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
