@@ -8,19 +8,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: SSH To Server 
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}          
-          key: ${{ secrets.SSH_PRIVATE_KEY }}          
-          script: |
-            ls -a
-      - name: check ssh key
+      - name: install ssh keys
+        # check this thread to understand why its needed:
+        # https://stackoverflow.com/a/70447517
         run: |
-          pwd
-          ls -al
-          ls -al ~/.ssh/
-          cat ~/.ssh/id_rsa
-      - name: SSH connect
-        run: ssh david@34.126.154.112 "ip a"
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
+      - name: connect and pull
+        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ip a"
+      - name: cleanup
+        run: rm -rf ~/.ssh
+
