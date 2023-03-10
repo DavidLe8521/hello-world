@@ -23,7 +23,7 @@ jobs:
           ls -al ~/.ssh/
       
       - name: connect and pull
-        run: ssh -i ~/.ssh/github_action_2 david@${{ secrets.SSH_HOST }} "ip a"
+        run: ssh -i ~/.ssh/github_action_2 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ip a"
       #- name: cleanup
        # run: rm -rf ~/.ssh
 
