@@ -17,4 +17,4 @@ jobs:
           #config: ${{ secrets.CONFIG }} #ssh_config; optional
           if_key_exists: fail # replace /ignore/fail; optional (defaults to fail)
       - name: SSH connect
-        run: ssh david@34.126.154.112 "hostname"
+        run: ssh david@34.126.154.112 "ip a"
