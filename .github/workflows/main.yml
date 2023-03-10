@@ -16,5 +16,9 @@ jobs:
           known_hosts: ${{ secrets.SSH_HOST }}
           #config: ${{ secrets.CONFIG }} #ssh_config; optional
           if_key_exists: fail # replace /ignore/fail; optional (defaults to fail)
+      - name: check ssh key
+        run: |
+          pwd
+          ls .ssh/
       - name: SSH connect
         run: ssh david@34.126.154.112 "ip a"
