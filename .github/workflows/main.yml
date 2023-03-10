@@ -8,14 +8,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install SSH key
-        uses: shimataro/ssh-key-action@v2
+      - name: SSH To Server        
+        uses: appleboy/ssh-action@master        
         with:
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          name: id_rsa
-          known_hosts: ${{ secrets.SSH_HOST }}
-          #config: ${{ secrets.CONFIG }} #ssh_config; optional
-          if_key_exists: fail # replace /ignore/fail; optional (defaults to fail)
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}          
+          key: ${{ secrets.SSH_PRIVATE_KEY }}          
+          script: |
+            ls -a
       - name: check ssh key
         run: |
           pwd
