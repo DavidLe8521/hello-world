@@ -24,7 +24,7 @@ jobs:
           cat ~/.ssh/github_action
       
       - name: connect and pull
-        run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "ip a"
-      - name: cleanup
-        run: rm -rf ~/.ssh
+        run: ssh -i ~/.ssh/github_action david@${{ secrets.SSH_HOST }} "ip a"
+      #- name: cleanup
+       # run: rm -rf ~/.ssh
 
