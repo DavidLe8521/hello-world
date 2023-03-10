@@ -12,8 +12,8 @@ jobs:
         # check this thread to understand why its needed:
         # https://stackoverflow.com/a/70447517
         run: |
-          install -m 400 -D /dev/null ~/.ssh/github_action_1
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_action_1
+          install -m 600 -D /dev/null ~/.ssh/github_action_2
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/github_action_2
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
       
       - name: check ssh key
@@ -23,7 +23,7 @@ jobs:
           ls -al ~/.ssh/
       
       - name: connect and pull
-        run: ssh -i ~/.ssh/github_action_1 david@${{ secrets.SSH_HOST }} "ip a"
+        run: ssh -i ~/.ssh/github_action_2 david@${{ secrets.SSH_HOST }} "ip a"
       #- name: cleanup
        # run: rm -rf ~/.ssh
 
