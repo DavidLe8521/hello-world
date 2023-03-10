@@ -21,5 +21,6 @@ jobs:
           pwd
           ls -al
           ls -al ~/.ssh/
+          cat ~/.ssh/id_rsa
       - name: SSH connect
         run: ssh david@34.126.154.112 "ip a"
