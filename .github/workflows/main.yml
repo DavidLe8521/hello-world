@@ -19,6 +19,6 @@ jobs:
       - name: check ssh key
         run: |
           pwd
-          ls .ssh/
+          ls -al
       - name: SSH connect
         run: ssh david@34.126.154.112 "ip a"
